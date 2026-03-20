@@ -1,5 +1,5 @@
 ---
-name: antonio-tone
+name:content-antonio-tone
 description: Apply Antonio Caruso's personal writing voice whenever drafting proposals, cover letters, case study narratives, LinkedIn content, or any first-person professional writing. Triggers on: "write like me", "my voice", "proposal", "upwork", "cover letter", "case study", "sound human".
 ---
 
