@@ -1,0 +1,1039 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Chef's Office: 2-Week Operational Plan</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700;900&family=DM+Sans:wght@300;400;500;600&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --navy: #1F2A44;
+    --navy-deep: #141c2e;
+    --navy-mid: #2C3E5D;
+    --gold: #C7A86D;
+    --gold-light: #dfc08a;
+    --beige: #E6D9C3;
+    --beige-pale: #f5f0e8;
+    --charcoal: #333333;
+    --muted: #6b7280;
+    --white: #ffffff;
+    --antonio-bg: #daeaf6;
+    --antonio-text: #1F4E79;
+    --sean-bg: #fdf0d5;
+    --sean-text: #7B4F00;
+    --both-bg: #e8f5e9;
+    --both-text: #2E7D32;
+    --danger: #8b3333;
+  }
+
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  body {
+    background: #f0ece4;
+    font-family: 'DM Sans', sans-serif;
+    color: var(--charcoal);
+    line-height: 1.6;
+  }
+
+  /* ── HEADER ── */
+  .site-header {
+    background: var(--navy-deep);
+    padding: 0;
+    position: relative;
+    overflow: hidden;
+  }
+  .site-header::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: repeating-linear-gradient(
+      -45deg,
+      transparent,
+      transparent 40px,
+      rgba(199,168,109,0.03) 40px,
+      rgba(199,168,109,0.03) 41px
+    );
+  }
+  .header-inner {
+    max-width: 1100px;
+    margin: 0 auto;
+    padding: 64px 48px 56px;
+    position: relative;
+  }
+  .brand-eyebrow {
+    font-family: 'DM Mono', monospace;
+    font-size: 11px;
+    letter-spacing: 0.25em;
+    color: var(--gold);
+    text-transform: uppercase;
+    margin-bottom: 20px;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+  }
+  .brand-eyebrow::after {
+    content: '';
+    flex: 1;
+    height: 1px;
+    background: rgba(199,168,109,0.3);
+    max-width: 200px;
+  }
+  .header-title {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(40px, 5vw, 64px);
+    font-weight: 900;
+    color: var(--white);
+    line-height: 1.05;
+    margin-bottom: 6px;
+  }
+  .header-title span { color: var(--gold); }
+  .header-sub {
+    font-size: 15px;
+    color: var(--beige);
+    opacity: 0.75;
+    margin-top: 14px;
+    font-weight: 300;
+  }
+  .header-meta {
+    display: flex;
+    gap: 32px;
+    margin-top: 40px;
+    flex-wrap: wrap;
+  }
+  .meta-item {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+  }
+  .meta-label {
+    font-family: 'DM Mono', monospace;
+    font-size: 10px;
+    letter-spacing: 0.2em;
+    color: var(--gold);
+    text-transform: uppercase;
+    opacity: 0.8;
+  }
+  .meta-value {
+    font-size: 14px;
+    color: var(--white);
+    font-weight: 500;
+  }
+  .gold-bar {
+    height: 3px;
+    background: linear-gradient(90deg, var(--gold), transparent);
+    width: 100%;
+  }
+
+  /* ── LAYOUT ── */
+  .main {
+    max-width: 1100px;
+    margin: 0 auto;
+    padding: 48px 48px 80px;
+  }
+
+  /* ── SECTION ── */
+  .section { margin-bottom: 64px; }
+  .section-header {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    margin-bottom: 28px;
+  }
+  .section-num {
+    font-family: 'DM Mono', monospace;
+    font-size: 11px;
+    color: var(--gold);
+    letter-spacing: 0.15em;
+    opacity: 0.8;
+    min-width: 32px;
+  }
+  .section-title {
+    font-family: 'Playfair Display', serif;
+    font-size: 22px;
+    font-weight: 700;
+    color: var(--navy);
+    letter-spacing: -0.01em;
+  }
+  .section-rule {
+    flex: 1;
+    height: 1px;
+    background: linear-gradient(90deg, var(--gold), rgba(199,168,109,0.1));
+  }
+
+  /* ── CARDS ── */
+  .card {
+    background: var(--white);
+    border-radius: 8px;
+    padding: 28px 32px;
+    border: 1px solid rgba(31,42,68,0.08);
+    box-shadow: 0 2px 12px rgba(31,42,68,0.05);
+  }
+  .card p {
+    font-size: 15px;
+    color: var(--charcoal);
+    line-height: 1.7;
+    margin-bottom: 10px;
+  }
+  .card p:last-child { margin-bottom: 0; }
+  .card p strong { color: var(--navy); }
+
+  /* ── CONTEXT GRID ── */
+  .context-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 20px;
+    margin-bottom: 20px;
+  }
+  .context-card {
+    background: var(--white);
+    border-radius: 8px;
+    padding: 24px 28px;
+    border: 1px solid rgba(31,42,68,0.08);
+  }
+  .context-card-label {
+    font-family: 'DM Mono', monospace;
+    font-size: 10px;
+    letter-spacing: 0.2em;
+    color: var(--gold);
+    text-transform: uppercase;
+    margin-bottom: 12px;
+  }
+  .context-card h3 {
+    font-family: 'Playfair Display', serif;
+    font-size: 17px;
+    color: var(--navy);
+    margin-bottom: 8px;
+  }
+  .context-card p {
+    font-size: 14px;
+    color: var(--muted);
+    line-height: 1.65;
+  }
+  .goal-list {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+  }
+  .goal-list li {
+    font-size: 14px;
+    color: var(--charcoal);
+    padding-left: 18px;
+    position: relative;
+    line-height: 1.5;
+  }
+  .goal-list li::before {
+    content: '-';
+    position: absolute;
+    left: 0;
+    color: var(--gold);
+    font-weight: 700;
+  }
+
+  /* ── SPLIT TABLE ── */
+  .split-table {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    border-radius: 10px;
+    overflow: hidden;
+    border: 1px solid rgba(31,42,68,0.1);
+    box-shadow: 0 2px 16px rgba(31,42,68,0.07);
+  }
+  .split-col { display: flex; flex-direction: column; }
+  .split-head {
+    padding: 18px 28px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+  .split-head.antonio { background: var(--navy); }
+  .split-head.sean    { background: var(--gold); }
+  .split-head-name {
+    font-family: 'DM Mono', monospace;
+    font-size: 12px;
+    letter-spacing: 0.18em;
+    font-weight: 500;
+    text-transform: uppercase;
+    color: var(--white);
+  }
+  .split-head-role {
+    font-size: 12px;
+    color: rgba(255,255,255,0.6);
+    margin-left: auto;
+    font-weight: 300;
+  }
+  .split-body {
+    padding: 24px 28px;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    flex: 1;
+  }
+  .split-col:first-child .split-body { background: #EBF0F8; }
+  .split-col:last-child  .split-body { background: var(--sean-bg); }
+  .split-item {
+    display: flex;
+    align-items: flex-start;
+    gap: 10px;
+    font-size: 14px;
+    color: var(--charcoal);
+    line-height: 1.5;
+  }
+  .split-item::before {
+    content: '▸';
+    color: var(--gold);
+    font-size: 10px;
+    margin-top: 3px;
+    flex-shrink: 0;
+  }
+
+  /* ── WEEKLY TABLES ── */
+  .week-block {
+    background: var(--white);
+    border-radius: 10px;
+    overflow: hidden;
+    border: 1px solid rgba(31,42,68,0.08);
+    box-shadow: 0 2px 16px rgba(31,42,68,0.06);
+  }
+  .week-block-header {
+    background: var(--navy);
+    padding: 20px 28px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+  .week-block-title {
+    font-family: 'Playfair Display', serif;
+    font-size: 19px;
+    color: var(--white);
+    font-weight: 700;
+  }
+  .week-block-tag {
+    font-family: 'DM Mono', monospace;
+    font-size: 11px;
+    letter-spacing: 0.15em;
+    color: var(--gold);
+    text-transform: uppercase;
+  }
+  .week-note {
+    padding: 14px 28px;
+    background: #f8f6f2;
+    font-size: 13px;
+    color: var(--muted);
+    border-bottom: 1px solid rgba(31,42,68,0.06);
+    font-style: italic;
+  }
+
+  table { width: 100%; border-collapse: collapse; }
+  thead tr { background: #f0ece4; }
+  thead th {
+    font-family: 'DM Mono', monospace;
+    font-size: 10px;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: var(--navy);
+    padding: 12px 16px;
+    text-align: left;
+    font-weight: 500;
+    border-bottom: 2px solid rgba(31,42,68,0.1);
+  }
+  tbody tr {
+    border-bottom: 1px solid rgba(31,42,68,0.06);
+    transition: background 0.15s;
+  }
+  tbody tr:hover { background: #fafaf8; }
+  tbody tr:last-child { border-bottom: none; }
+  td {
+    padding: 14px 16px;
+    font-size: 14px;
+    color: var(--charcoal);
+    vertical-align: top;
+    line-height: 1.55;
+  }
+  .td-day {
+    font-family: 'DM Mono', monospace;
+    font-size: 12px;
+    color: var(--navy);
+    font-weight: 500;
+    white-space: nowrap;
+    width: 60px;
+  }
+  .td-owner { width: 110px; }
+  .td-notes {
+    font-size: 13px;
+    color: var(--muted);
+    font-style: italic;
+  }
+
+  .owner-pill {
+    display: inline-block;
+    padding: 3px 10px;
+    border-radius: 4px;
+    font-family: 'DM Mono', monospace;
+    font-size: 11px;
+    font-weight: 500;
+    letter-spacing: 0.08em;
+    white-space: nowrap;
+  }
+  .owner-antonio { background: var(--antonio-bg); color: var(--antonio-text); }
+  .owner-sean    { background: var(--sean-bg);    color: var(--sean-text);    }
+  .owner-both    { background: var(--both-bg);    color: var(--both-text);    }
+
+  /* ── DELIVERABLES ── */
+  .deliverables-table {
+    background: var(--white);
+    border-radius: 10px;
+    overflow: hidden;
+    border: 1px solid rgba(31,42,68,0.08);
+    box-shadow: 0 2px 16px rgba(31,42,68,0.06);
+  }
+  .deliverables-table thead tr { background: var(--navy); }
+  .deliverables-table thead th {
+    color: var(--gold);
+    border-bottom: none;
+    padding: 14px 20px;
+  }
+  .deliverables-table tbody td { padding: 13px 20px; }
+  .deadline-pill {
+    display: inline-block;
+    padding: 2px 8px;
+    background: #f0ece4;
+    border-radius: 4px;
+    font-family: 'DM Mono', monospace;
+    font-size: 11px;
+    color: var(--navy);
+    font-weight: 500;
+  }
+
+  /* ── BRAND GRID ── */
+  .brand-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    gap: 1px;
+    background: rgba(31,42,68,0.1);
+    border-radius: 10px;
+    overflow: hidden;
+    border: 1px solid rgba(31,42,68,0.1);
+  }
+  .brand-row-header {
+    display: contents;
+  }
+  .brand-cell {
+    background: var(--white);
+    padding: 18px 20px;
+  }
+  .brand-cell.header {
+    background: var(--navy);
+    padding: 14px 20px;
+  }
+  .brand-cell.header span {
+    font-family: 'DM Mono', monospace;
+    font-size: 10px;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--gold);
+    font-weight: 500;
+  }
+  .brand-cell-label {
+    font-size: 13px;
+    font-weight: 600;
+    color: var(--navy);
+    margin-bottom: 6px;
+  }
+  .brand-cell-text {
+    font-size: 13px;
+    color: var(--charcoal);
+    line-height: 1.55;
+  }
+  .brand-cell-avoid {
+    font-size: 12px;
+    color: var(--danger);
+    line-height: 1.5;
+    font-style: italic;
+  }
+  .colour-chips {
+    display: flex;
+    gap: 8px;
+    margin-top: 8px;
+    flex-wrap: wrap;
+  }
+  .chip {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    font-family: 'DM Mono', monospace;
+    font-size: 11px;
+    color: var(--charcoal);
+  }
+  .chip-swatch {
+    width: 16px;
+    height: 16px;
+    border-radius: 3px;
+    border: 1px solid rgba(0,0,0,0.1);
+    flex-shrink: 0;
+  }
+
+  /* ── HOLD BOX ── */
+  .hold-box {
+    background: var(--white);
+    border-radius: 10px;
+    padding: 28px 32px;
+    border-left: 4px solid var(--gold);
+    border-top: 1px solid rgba(31,42,68,0.08);
+    border-right: 1px solid rgba(31,42,68,0.08);
+    border-bottom: 1px solid rgba(31,42,68,0.08);
+    box-shadow: 0 2px 12px rgba(31,42,68,0.05);
+  }
+  .hold-box ul {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    margin-top: 14px;
+  }
+  .hold-box li {
+    font-size: 14px;
+    color: var(--charcoal);
+    padding-left: 20px;
+    position: relative;
+    line-height: 1.55;
+  }
+  .hold-box li::before {
+    content: '✕';
+    position: absolute;
+    left: 0;
+    color: var(--danger);
+    font-size: 11px;
+    top: 2px;
+  }
+  .hold-label {
+    font-family: 'DM Mono', monospace;
+    font-size: 11px;
+    letter-spacing: 0.15em;
+    color: var(--danger);
+    text-transform: uppercase;
+    margin-bottom: 6px;
+  }
+  .hold-title {
+    font-family: 'Playfair Display', serif;
+    font-size: 18px;
+    color: var(--navy);
+    font-weight: 700;
+  }
+
+  /* ── FOOTER ── */
+  .site-footer {
+    background: var(--navy-deep);
+    padding: 24px 48px;
+    text-align: center;
+  }
+  .site-footer p {
+    font-family: 'DM Mono', monospace;
+    font-size: 10px;
+    letter-spacing: 0.18em;
+    color: rgba(255,255,255,0.3);
+    text-transform: uppercase;
+  }
+
+  /* ── PHASE BADGE ── */
+  .phase-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    background: rgba(199,168,109,0.12);
+    border: 1px solid rgba(199,168,109,0.3);
+    border-radius: 100px;
+    padding: 5px 14px;
+    font-family: 'DM Mono', monospace;
+    font-size: 11px;
+    color: var(--gold);
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    margin-bottom: 32px;
+    display: inline-block;
+  }
+
+  /* ── ANIMATIONS ── */
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(18px); }
+    to   { opacity: 1; transform: translateY(0); }
+  }
+  .header-inner > * {
+    animation: fadeUp 0.6s ease both;
+  }
+  .header-inner > *:nth-child(1) { animation-delay: 0.05s; }
+  .header-inner > *:nth-child(2) { animation-delay: 0.12s; }
+  .header-inner > *:nth-child(3) { animation-delay: 0.18s; }
+  .header-inner > *:nth-child(4) { animation-delay: 0.25s; }
+
+  @media (max-width: 768px) {
+    .main { padding: 32px 24px 60px; }
+    .context-grid, .brand-grid { grid-template-columns: 1fr; }
+    .split-table { grid-template-columns: 1fr; }
+    .header-inner { padding: 40px 24px 36px; }
+    .brand-grid { grid-template-columns: 1fr; }
+  }
+</style>
+</head>
+<body>
+
+<!-- HEADER -->
+<header class="site-header">
+  <div class="header-inner">
+    <div class="brand-eyebrow">Chef's Office Australia, Executive Academy</div>
+    <h1 class="header-title">2-Week<br><span>Operational Plan</span></h1>
+    <p class="header-sub">Antonio & Sean &nbsp;·&nbsp; Phase 1 Execution &nbsp;·&nbsp; Strictly Confidential</p>
+    <div class="header-meta">
+      <div class="meta-item"><span class="meta-label">Client</span><span class="meta-value">Ricardo Calderini</span></div>
+      <div class="meta-item"><span class="meta-label">Location</span><span class="meta-value">Perth, WA</span></div>
+      <div class="meta-item"><span class="meta-label">Phase</span><span class="meta-value">1 of 3: Foundation</span></div>
+      <div class="meta-item"><span class="meta-label">Ad Budget</span><span class="meta-value">AUD $500–1,000/mo</span></div>
+    </div>
+  </div>
+  <div class="gold-bar"></div>
+</header>
+
+<main class="main">
+
+  <!-- CONTEXT -->
+  <section class="section">
+    <div class="section-header">
+      <span class="section-num">01</span>
+      <h2 class="section-title">Context & 90-Day Objectives</h2>
+      <div class="section-rule"></div>
+    </div>
+    <div class="context-grid">
+      <div class="context-card">
+        <div class="context-card-label">Brand Mission</div>
+        <h3>From Skilled Cook to Kitchen Leader</h3>
+        <p>Help chefs develop the business, leadership, and operational skills to run profitable kitchens. Professional education for serious chefs who want to operate at a higher level.</p>
+      </div>
+      <div class="context-card">
+        <div class="context-card-label">90-Day Contract Goals</div>
+        <ul class="goal-list">
+          <li>Stable tracking and campaign infrastructure</li>
+          <li>Consistent acquisition cost benchmark established</li>
+          <li>AI for Chefs digital product launched in funnel</li>
+          <li>Demand generated for Chef's Office cohort program</li>
+          <li>10 cohort spots filled by months 2–3</li>
+        </ul>
+      </div>
+    </div>
+    <div class="card">
+      <p><strong>These first two weeks are infrastructure-first.</strong> No campaigns launch until pixel is verified, tracking is clean, and creative is signed off by Ricardo. Two weeks of solid setup means week 3 launches with clean data and a working funnel from day one.</p>
+    </div>
+  </section>
+
+  <!-- RESPONSIBILITY SPLIT -->
+  <section class="section">
+    <div class="section-header">
+      <span class="section-num">02</span>
+      <h2 class="section-title">Responsibility Split</h2>
+      <div class="section-rule"></div>
+    </div>
+    <div class="split-table">
+      <div class="split-col">
+        <div class="split-head antonio">
+          <span class="split-head-name">Antonio</span>
+          <span class="split-head-role">Strategy, Creative & QA</span>
+        </div>
+        <div class="split-body">
+          <div class="split-item">Funnel strategy & architecture</div>
+          <div class="split-item">Creative strategy & ad briefs</div>
+          <div class="split-item">Offer positioning & copy</div>
+          <div class="split-item">Upsell sequence flow & page briefs</div>
+          <div class="split-item">Email welcome sequence copy</div>
+          <div class="split-item">Brand alignment audit</div>
+          <div class="split-item">End-to-end funnel testing & QA</div>
+          <div class="split-item">UTM parameter implementation across funnel</div>
+          <div class="split-item">GTM setup: all tags, triggers, variables</div>
+          <div class="split-item">Google Ads account setup & campaign structure</div>
+        </div>
+      </div>
+      <div class="split-col">
+        <div class="split-head sean">
+          <span class="split-head-name">Sean</span>
+          <span class="split-head-role">Ads Platforms & Tracking</span>
+        </div>
+        <div class="split-body">
+          <div class="split-item">Meta Ads account audit & restructure</div>
+          <div class="split-item">Meta Pixel setup & conversion event verification</div>
+          <div class="split-item">GA4 tracking stack setup</div>
+          <div class="split-item">Meta campaign structure & audience research</div>
+          <div class="split-item">Google Business Profile setup & optimisation</div>
+          <div class="split-item">Website review & design fixes</div>
+          <div class="split-item">Pre-launch technical checklist</div>
+          <div class="split-item">Performance reporting template</div>
+          <div class="split-item">Client communication & weekly reporting</div>
+        </div>
+      </div>
+    </div>
+    <div class="card" style="margin-top:16px; border-left: 3px solid var(--gold);">
+      <p>Tasks are split so that one person has clear ownership. There is constant collaboration and discussion throughout to make sure the best possible result is achieved.</p>
+    </div>
+  </section>
+
+  <!-- WEEK 1 -->
+  <section class="section">
+    <div class="section-header">
+      <span class="section-num">03</span>
+      <h2 class="section-title">Week 1: Foundation & Audit</h2>
+      <div class="section-rule"></div>
+    </div>
+    <div class="week-block">
+      <div class="week-block-header">
+        <span class="week-block-title">Days 1–7</span>
+        <span class="week-block-tag">Audit only: no spend, no campaigns</span>
+      </div>
+      <div class="week-note">Understand the current state before building anything. No campaigns, no creative spend. Fix infrastructure first.</div>
+      <table>
+        <thead>
+          <tr>
+            <th>Day</th>
+            <th>Owner</th>
+            <th>Task</th>
+            <th>Notes</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td class="td-day">1–2</td>
+            <td class="td-owner"><span class="owner-pill owner-antonio">Antonio</span></td>
+            <td>Map full funnel architecture: traffic → ascension</td>
+            <td class="td-notes">Books → Modules → Certification → Membership → Mentorship. Align with the brand value ladder.</td>
+          </tr>
+          <tr>
+            <td class="td-day">1–2</td>
+            <td class="td-owner"><span class="owner-pill owner-sean">Sean</span></td>
+            <td>Meta Ads account audit: existing campaigns, ad sets, audiences</td>
+            <td class="td-notes">Document what exists, what's broken, what to cut</td>
+          </tr>
+          <tr>
+            <td class="td-day">1–2</td>
+            <td class="td-owner"><span class="owner-pill owner-antonio">Antonio</span></td>
+            <td>Google Ads account audit: check if account exists, current campaigns, conversion tracking status</td>
+            <td class="td-notes">If no account exists, flag immediately. Setup adds time to week 2.</td>
+          </tr>
+          <tr>
+            <td class="td-day">1–2</td>
+            <td class="td-owner"><span class="owner-pill owner-sean">Sean</span></td>
+            <td>Website review: audit pages for conversion readiness, load speed, mobile layout, broken links</td>
+            <td class="td-notes">Flag any design or UX issues that would affect conversion before traffic arrives</td>
+          </tr>
+          <tr>
+            <td class="td-day">2–3</td>
+            <td class="td-owner"><span class="owner-pill owner-antonio">Antonio</span></td>
+            <td>GTM audit: check if container exists, what tags and triggers are live, what's firing incorrectly</td>
+            <td class="td-notes">GTM misconfiguration breaks attribution across every channel. Audit before touching anything.</td>
+          </tr>
+          <tr>
+            <td class="td-day">2–3</td>
+            <td class="td-owner"><span class="owner-pill owner-antonio">Antonio</span></td>
+            <td>Audit AI for Chefs product: positioning, pricing, page copy</td>
+            <td class="td-notes">Is offer strong enough to drive cold traffic? Flag gaps before we build</td>
+          </tr>
+          <tr>
+            <td class="td-day">2–3</td>
+            <td class="td-owner"><span class="owner-pill owner-sean">Sean</span></td>
+            <td>Pixel audit: verify all conversion events fire on checkout + thank you pages</td>
+            <td class="td-notes">No campaigns until this is confirmed clean</td>
+          </tr>
+          <tr>
+            <td class="td-day">3–4</td>
+            <td class="td-owner"><span class="owner-pill owner-antonio">Antonio</span></td>
+            <td>Brand alignment audit: review all existing assets against brand guidelines</td>
+            <td class="td-notes">Navy #1F2A44 | Gold #C7A86D | Authority tone: no hype, no lifestyle</td>
+          </tr>
+          <tr>
+            <td class="td-day">3–4</td>
+            <td class="td-owner"><span class="owner-pill owner-sean">Sean</span></td>
+            <td>Google Business Profile audit: is it claimed, verified, complete? Check category, description, photos</td>
+            <td class="td-notes">An incomplete or unclaimed GBP damages local credibility. Get it sorted before any traffic runs.</td>
+          </tr>
+          <tr>
+            <td class="td-day">3–4</td>
+            <td class="td-owner"><span class="owner-pill owner-sean">Sean</span></td>
+            <td>Tracking stack: GA4 setup, UTM parameter framework, naming conventions</td>
+            <td class="td-notes">Build attribution layer before any spend starts</td>
+          </tr>
+          <tr>
+            <td class="td-day">4–5</td>
+            <td class="td-owner"><span class="owner-pill owner-antonio">Antonio</span></td>
+            <td>Identify creative angles: 3–5 ad hook concepts for hospitality audience</td>
+            <td class="td-notes">Direct, educational, credible. Ref brand: "Most chefs never learn food cost. That's why kitchens fail."</td>
+          </tr>
+          <tr>
+            <td class="td-day">4–5</td>
+            <td class="td-owner"><span class="owner-pill owner-sean">Sean</span></td>
+            <td>Audience research: interest stacks, lookalike seed lists, cold audience plan</td>
+            <td class="td-notes">Hospitality professionals AU: chefs, kitchen leaders, culinary students</td>
+          </tr>
+          <tr>
+            <td class="td-day">5–6</td>
+            <td class="td-owner"><span class="owner-pill owner-antonio">Antonio</span></td>
+            <td>Design one-time offer sequence flow: OTO 1 ($14.97), OTO 2 ($19.97)</td>
+            <td class="td-notes">Logic: front-end buy → immediate upsell → second upsell → email nurture</td>
+          </tr>
+          <tr>
+            <td class="td-day">5–6</td>
+            <td class="td-owner"><span class="owner-pill owner-sean">Sean</span></td>
+            <td>Restructure Meta Ads account: campaign naming, objectives, ad set structure</td>
+            <td class="td-notes">Brand + cold acquisition + retargeting: separate budgets</td>
+          </tr>
+          <tr>
+            <td class="td-day">7</td>
+            <td class="td-owner"><span class="owner-pill owner-both">Both</span></td>
+            <td>Week 1 sync with Ricardo: present audit findings, confirm direction</td>
+            <td class="td-notes">Keep it direct. Show what exists, what changes, what launches in week 2</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </section>
+
+  <!-- WEEK 2 -->
+  <section class="section">
+    <div class="section-header">
+      <span class="section-num">04</span>
+      <h2 class="section-title">Week 2: Build & Pre-Launch</h2>
+      <div class="section-rule"></div>
+    </div>
+    <div class="week-block">
+      <div class="week-block-header">
+        <span class="week-block-title">Days 8–14</span>
+        <span class="week-block-tag">Build assets: campaigns activate in week 3</span>
+      </div>
+      <div class="week-note">Build the assets needed to launch. Everything Sean builds needs Antonio's creative ready first. Sequence matters.</div>
+      <table>
+        <thead>
+          <tr>
+            <th>Day</th>
+            <th>Owner</th>
+            <th>Task</th>
+            <th>Notes</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td class="td-day">8–9</td>
+            <td class="td-owner"><span class="owner-pill owner-antonio">Antonio</span></td>
+            <td>Write landing page copy: AI for Chefs front-end offer ($9.97)</td>
+            <td class="td-notes">Authority + practical value. Lead with the outcome the buyer gets.</td>
+          </tr>
+          <tr>
+            <td class="td-day">8–9</td>
+            <td class="td-owner"><span class="owner-pill owner-antonio">Antonio</span></td>
+            <td>GTM full build: configure all tags (Meta Pixel, Google Ads conversion, GA4), triggers, and variables</td>
+            <td class="td-notes">Every tag through GTM. Test in preview mode before publishing. No tag fires without verification.</td>
+          </tr>
+          <tr>
+            <td class="td-day">8–9</td>
+            <td class="td-owner"><span class="owner-pill owner-sean">Sean</span></td>
+            <td>Google Business Profile: complete all fields, upload photos, set correct category and service areas</td>
+            <td class="td-notes">Category: education or professional training. Description in Ricardo's voice. Brand photos only.</td>
+          </tr>
+          <tr>
+            <td class="td-day">8–9</td>
+            <td class="td-owner"><span class="owner-pill owner-sean">Sean</span></td>
+            <td>Build campaign shells in Meta Ads: cold audience + retargeting ready to activate</td>
+            <td class="td-notes">Hold budget until creative is approved and pixel is clean</td>
+          </tr>
+          <tr>
+            <td class="td-day">9–10</td>
+            <td class="td-owner"><span class="owner-pill owner-antonio">Antonio</span></td>
+            <td>Google Ads campaign build: search campaigns targeting hospitality professionals, conversion tracking linked</td>
+            <td class="td-notes">Search intent complements Meta cold traffic. Link GA4 before activating.</td>
+          </tr>
+          <tr>
+            <td class="td-day">9–10</td>
+            <td class="td-owner"><span class="owner-pill owner-sean">Sean</span></td>
+            <td>Website design fixes: implement priority changes identified in week 1 audit</td>
+            <td class="td-notes">Focus on pages that sit in the conversion path. Everything else can wait.</td>
+          </tr>
+          <tr>
+            <td class="td-day">9–10</td>
+            <td class="td-owner"><span class="owner-pill owner-antonio">Antonio</span></td>
+            <td>Write ad copy: 3 headline + body variants per creative angle</td>
+            <td class="td-notes">Educational short-form, founder-led, carousel with practical lessons</td>
+          </tr>
+          <tr>
+            <td class="td-day">9–10</td>
+            <td class="td-owner"><span class="owner-pill owner-antonio">Antonio</span></td>
+            <td>Implement UTM parameters across all funnel URLs</td>
+            <td class="td-notes">Every traffic source tagged before first dollar of spend. Methodical: every page, every source.</td>
+          </tr>
+          <tr>
+            <td class="td-day">10–11</td>
+            <td class="td-owner"><span class="owner-pill owner-antonio">Antonio</span></td>
+            <td>Write OTO 1 and OTO 2 page copy (upsell sequence)</td>
+            <td class="td-notes">Must be complete before funnel test. Ricardo's voice throughout.</td>
+          </tr>
+          <tr>
+            <td class="td-day">10–11</td>
+            <td class="td-owner"><span class="owner-pill owner-sean">Sean</span></td>
+            <td>Set up performance reporting dashboard: CPL, CPA, ROAS, upsell attach rate</td>
+            <td class="td-notes">Weekly report template for Ricardo: clear, commentary-driven</td>
+          </tr>
+          <tr>
+            <td class="td-day">11–12</td>
+            <td class="td-owner"><span class="owner-pill owner-antonio">Antonio</span></td>
+            <td>Draft email welcome sequence: 5 emails (confirmation → value → cohort invite)</td>
+            <td class="td-notes">Professional, practical, direct. No soft fluff.</td>
+          </tr>
+          <tr>
+            <td class="td-day">11–12</td>
+            <td class="td-owner"><span class="owner-pill owner-antonio">Antonio</span></td>
+            <td>End-to-end funnel test: purchase, OTO trigger, thank you page, pixel fire, email confirmation</td>
+            <td class="td-notes">Click every step as a real buyer. Every broken trigger is Antonio's to catch before launch.</td>
+          </tr>
+          <tr>
+            <td class="td-day">11–12</td>
+            <td class="td-owner"><span class="owner-pill owner-sean">Sean</span></td>
+            <td>Lookalike and cold audience build in Meta: seed lists, interest stacks, exclusions set</td>
+            <td class="td-notes">Audiences built and saved. Ready to attach to campaign shells on launch day.</td>
+          </tr>
+          <tr>
+            <td class="td-day">12–13</td>
+            <td class="td-owner"><span class="owner-pill owner-antonio">Antonio</span></td>
+            <td>Creative review with Ricardo: walk through ad angles, copy variants, brand alignment</td>
+            <td class="td-notes">Get sign-off before production. Flag any misalignments with brand guidelines.</td>
+          </tr>
+          <tr>
+            <td class="td-day">12–13</td>
+            <td class="td-owner"><span class="owner-pill owner-sean">Sean</span></td>
+            <td>Final pre-launch checklist: pixel, tracking, budget allocation, objectives confirmed</td>
+            <td class="td-notes">Document every item. No assumptions.</td>
+          </tr>
+          <tr>
+            <td class="td-day">13–14</td>
+            <td class="td-owner"><span class="owner-pill owner-antonio">Antonio</span></td>
+            <td>Finalise AI for Chefs integration brief: funnel pages, email trigger, OTO logic</td>
+            <td class="td-notes">Clean handoff brief to Ricardo for any product-side actions needed</td>
+          </tr>
+          <tr>
+            <td class="td-day">14</td>
+            <td class="td-owner"><span class="owner-pill owner-both">Both</span></td>
+            <td>End-of-week-2 review: all infrastructure confirmed ready. Set week 3 launch date.</td>
+            <td class="td-notes">Brief Ricardo. Set expectations: first data in 48–72 hrs of launch.</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </section>
+
+  <!-- DELIVERABLES -->
+  <section class="section">
+    <div class="section-header">
+      <span class="section-num">05</span>
+      <h2 class="section-title">End-of-Week-2 Deliverables</h2>
+      <div class="section-rule"></div>
+    </div>
+    <div class="deliverables-table">
+      <table>
+        <thead>
+          <tr>
+            <th>Deliverable</th>
+            <th>Owner</th>
+            <th>Deadline</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr><td>Funnel architecture document (full value ladder mapped)</td><td><span class="owner-pill owner-antonio">Antonio</span></td><td><span class="deadline-pill">Day 3</span></td></tr>
+          <tr><td>Brand alignment audit completed</td><td><span class="owner-pill owner-antonio">Antonio</span></td><td><span class="deadline-pill">Day 4</span></td></tr>
+          <tr><td>Creative brief: 3–5 ad angles with hooks</td><td><span class="owner-pill owner-antonio">Antonio</span></td><td><span class="deadline-pill">Day 5</span></td></tr>
+          <tr><td>AI for Chefs landing page copy</td><td><span class="owner-pill owner-antonio">Antonio</span></td><td><span class="deadline-pill">Day 9</span></td></tr>
+          <tr><td>OTO 1 and OTO 2 upsell page copy</td><td><span class="owner-pill owner-antonio">Antonio</span></td><td><span class="deadline-pill">Day 11</span></td></tr>
+          <tr><td>Email welcome sequence (5 emails)</td><td><span class="owner-pill owner-antonio">Antonio</span></td><td><span class="deadline-pill">Day 12</span></td></tr>
+          <tr><td>Meta Ads account audit report</td><td><span class="owner-pill owner-sean">Sean</span></td><td><span class="deadline-pill">Day 3</span></td></tr>
+          <tr><td>Pixel + conversion events verified across all pages</td><td><span class="owner-pill owner-sean">Sean</span></td><td><span class="deadline-pill">Day 4</span></td></tr>
+          <tr><td>Tracking stack: GA4 + UTM framework live</td><td><span class="owner-pill owner-sean">Sean</span></td><td><span class="deadline-pill">Day 5</span></td></tr>
+          <tr><td>Meta Ads account restructured: campaigns ready to activate</td><td><span class="owner-pill owner-sean">Sean</span></td><td><span class="deadline-pill">Day 10</span></td></tr>
+          <tr><td>Google Ads campaigns built and linked to GA4</td><td><span class="owner-pill owner-antonio">Antonio</span></td><td><span class="deadline-pill">Day 10</span></td></tr>
+          <tr><td>Website audit completed: conversion issues flagged</td><td><span class="owner-pill owner-sean">Sean</span></td><td><span class="deadline-pill">Day 3</span></td></tr>
+          <tr><td>Priority website design fixes implemented</td><td><span class="owner-pill owner-sean">Sean</span></td><td><span class="deadline-pill">Day 10</span></td></tr>
+          <tr><td>GTM container fully configured: all tags, triggers, variables tested and published</td><td><span class="owner-pill owner-antonio">Antonio</span></td><td><span class="deadline-pill">Day 9</span></td></tr>
+          <tr><td>Google Business Profile complete: all fields, photos, category, description</td><td><span class="owner-pill owner-sean">Sean</span></td><td><span class="deadline-pill">Day 9</span></td></tr>
+          <tr><td>UTM parameters implemented across all funnel URLs</td><td><span class="owner-pill owner-antonio">Antonio</span></td><td><span class="deadline-pill">Day 10</span></td></tr>
+          <tr><td>End-to-end funnel test passed</td><td><span class="owner-pill owner-antonio">Antonio</span></td><td><span class="deadline-pill">Day 12</span></td></tr>
+          <tr><td>Cold and lookalike audience builds complete in Meta</td><td><span class="owner-pill owner-sean">Sean</span></td><td><span class="deadline-pill">Day 12</span></td></tr>
+          <tr><td>Weekly performance reporting template live</td><td><span class="owner-pill owner-sean">Sean</span></td><td><span class="deadline-pill">Day 13</span></td></tr>
+          <tr><td>Week 2 review presented to Ricardo</td><td><span class="owner-pill owner-both">Both</span></td><td><span class="deadline-pill">Day 14</span></td></tr>
+        </tbody>
+      </table>
+    </div>
+  </section>
+
+  <!-- BRAND REFERENCE -->
+  <section class="section">
+    <div class="section-header">
+      <span class="section-num">06</span>
+      <h2 class="section-title">Brand Alignment Reference</h2>
+      <div class="section-rule"></div>
+    </div>
+    <div class="brand-grid">
+      <div class="brand-cell header"><span>Element</span></div>
+      <div class="brand-cell header"><span>Use</span></div>
+      <div class="brand-cell header"><span>Avoid</span></div>
+
+      <div class="brand-cell">
+        <div class="brand-cell-label">Colour palette</div>
+      </div>
+      <div class="brand-cell">
+        <div class="colour-chips">
+          <span class="chip"><span class="chip-swatch" style="background:#1F2A44;"></span> #1F2A44</span>
+          <span class="chip"><span class="chip-swatch" style="background:#C7A86D;"></span> #C7A86D</span>
+          <span class="chip"><span class="chip-swatch" style="background:#E6D9C3;"></span> #E6D9C3</span>
+          <span class="chip"><span class="chip-swatch" style="background:#333333;"></span> #333333</span>
+        </div>
+      </div>
+      <div class="brand-cell"><div class="brand-cell-avoid">Neon tones, bright colours, chaotic palettes</div></div>
+
+      <div class="brand-cell"><div class="brand-cell-label">Typography</div></div>
+      <div class="brand-cell"><div class="brand-cell-text">Playfair Display for headings · Inter / Open Sans for body</div></div>
+      <div class="brand-cell"><div class="brand-cell-avoid">Decorative fonts, inconsistent sizing</div></div>
+
+      <div class="brand-cell"><div class="brand-cell-label">Tone</div></div>
+      <div class="brand-cell"><div class="brand-cell-text">Direct, practical, authoritative. Educational value first. No hedging.</div></div>
+      <div class="brand-cell"><div class="brand-cell-avoid">Hype marketing, lifestyle angles, inspirational clichés, unrealistic promises</div></div>
+
+      <div class="brand-cell"><div class="brand-cell-label">Ad creative</div></div>
+      <div class="brand-cell"><div class="brand-cell-text">Founder-led video, carousel with practical lessons, clean static with strong headline</div></div>
+      <div class="brand-cell"><div class="brand-cell-avoid">Guru-style ads, overstaged promos, dramatic food photography</div></div>
+
+      <div class="brand-cell"><div class="brand-cell-label">Messaging angle</div></div>
+      <div class="brand-cell"><div class="brand-cell-text">"Understanding food cost is what turns a good cook into a valuable chef."</div></div>
+      <div class="brand-cell"><div class="brand-cell-avoid">Passion-based hooks, vague motivational copy, soft CTAs</div></div>
+
+      <div class="brand-cell"><div class="brand-cell-label">Positioning</div></div>
+      <div class="brand-cell"><div class="brand-cell-text">Professional executive academy: closer to business education than restaurant marketing</div></div>
+      <div class="brand-cell"><div class="brand-cell-avoid">Lifestyle content, celebrity chef energy, casual kitchen aesthetic</div></div>
+    </div>
+  </section>
+
+  <!-- HOLD -->
+  <section class="section">
+    <div class="section-header">
+      <span class="section-num">07</span>
+      <h2 class="section-title">What Does Not Start in Weeks 1–2</h2>
+      <div class="section-rule"></div>
+    </div>
+    <div class="hold-box">
+      <div class="hold-label">On hold until infrastructure is confirmed</div>
+      <div class="hold-title">These items are in scope: they start in week 3 and beyond</div>
+      <ul>
+        <li>Paid Meta campaigns: no spend until pixel is verified and creative is approved by Ricardo</li>
+        <li>Email send to existing list: audit list first, confirm opt-in quality</li>
+        <li>Cohort demand generation: begins week 3 once front-end funnel is live</li>
+        <li>Academy module launch: Phase 2 of 90-day plan, post-cohort fill</li>
+      </ul>
+    </div>
+  </section>
+
+</main>
+
+<footer class="site-footer">
+  <p>Chef's Office Australia &nbsp;·&nbsp; Marketing & Growth Engagement &nbsp;·&nbsp; Phase 1 &nbsp;·&nbsp; Confidential</p>
+</footer>
+
+</body>
+</html>
