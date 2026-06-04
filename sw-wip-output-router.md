@@ -151,7 +151,8 @@ This makes the routing audit-able and reminds the user the file isn't promoted y
 |---|---|
 | Client WIP (drafts, plans, reports in progress) | `clients/[Client]/04-working/` |
 | Client finals (approved, signed-off) | `clients/[Client]/03-Deliverables/` |
-| Session context summaries | `clients/[Client]/05-Context MD/` |
+| Session context summaries (client) | `clients/[Client]/05-Context MD/` |
+| Session context summaries (internal) | `business-development/05-Context MD/` |
 | Internal Streetwise WIP | `business-development/04-working/` |
 | Internal Streetwise finals | `business-development/[subfolder]/` |
 

@@ -72,7 +72,7 @@ clients/[Client Name]/05-Context MD/[YYYY-MM-DD]-[topic]-context.md
 ```
 For internal/Streetwise work (no client):
 ```
-business-development/04-working/[YYYY-MM-DD]-[topic]-context.md
+business-development/05-Context MD/[YYYY-MM-DD]-[topic]-context.md
 ```
 
 ### Step 2 — Generate the session summary (see format in §3)
