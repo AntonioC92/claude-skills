@@ -84,7 +84,7 @@ If your draft path doesn't match → STOP and reroute.
 
 5. **NEVER save anywhere inside the project that's not `04-working/` UNLESS the user has explicitly approved the output as final.** Examples of "approved as final": "this is signed off, move it to 03-Deliverables", "publish this to the website folder", "this is the final version."
 
-6. **NEVER auto-create new folders like `outputs/`, `drafts/`, `work/`, `tmp/`, `wip/`, `temp/`** inside the streetwise-consultancy structure. The folder convention is fixed: `01-received` / `02-Strategy` / `03-Deliverables` / `04-working` for clients; `business-development/04-working` for internal.
+6. **NEVER auto-create new folders like `outputs/`, `drafts/`, `work/`, `tmp/`, `wip/`, `temp/`** inside the streetwise-consultancy structure. The folder convention is fixed: `01-received` / `02-Strategy` / `03-Deliverables` / `04-working` / `05-Context MD` / `ai-automations` for clients; `business-development/04-working` for internal.
 
 ---
 
@@ -138,7 +138,7 @@ This makes the routing audit-able and reminds the user the file isn't promoted y
 1. ALWAYS pick the path BEFORE calling Write, not after
 2. ALWAYS default to `04-working/` for any new file unless explicitly approved as final
 3. ALWAYS state the routing decision in the response so the user can catch errors
-4. NEVER create new folders outside the `01-received` / `02-Strategy` / `03-Deliverables` / `04-working` convention (clients) or `business-development/04-working/` (internal)
+4. NEVER create new folders outside the standard client convention: `01-received` / `02-Strategy` / `03-Deliverables` / `04-working` / `05-Context MD` / `ai-automations` (clients) or `business-development/04-working/` (internal)
 5. NEVER move a file out of `04-working/` without explicit user approval
 6. If unclear whether client vs internal, ASK once — don't guess
 7. This skill takes precedence over generic file-saving instincts
@@ -153,10 +153,14 @@ This makes the routing audit-able and reminds the user the file isn't promoted y
 | Client finals (approved, signed-off) | `clients/[Client]/03-Deliverables/` |
 | Session context summaries (client) | `clients/[Client]/05-Context MD/` |
 | Session context summaries (internal) | `business-development/05-Context MD/` |
+| AI/automation configs, n8n JSON, MCP packs (client) | `clients/[Client]/ai-automations/` |
+| AI/automation projects (root-level, cross-client) | `ai-automations/[project-name]/` |
 | Internal Streetwise WIP | `business-development/04-working/` |
 | Internal Streetwise finals | `business-development/[subfolder]/` |
 
 `05-Context MD/` is managed exclusively by `sw-session-checkpoint`. Do not save any other file type there.
+
+`ai-automations/` (client-level) holds automation configs, workflow JSON, MCP server packs, and meta-automation files for that client. It is NOT a WIP folder — files land here when built, not when approved. Never route general WIP here.
 
 ---
 

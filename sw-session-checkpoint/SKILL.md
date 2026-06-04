@@ -141,12 +141,26 @@ This skill adds one new valid destination type to the routing rules:
 | File type | Destination |
 |---|---|
 | Session context summaries | `clients/[Client]/05-Context MD/` |
+| Session context summaries (internal) | `business-development/05-Context MD/` |
 | All other WIP | `clients/[Client]/04-working/` |
+| AI/automation configs, workflow JSON, MCP packs | `clients/[Client]/ai-automations/` |
 | Internal Streetwise WIP | `business-development/04-working/` |
+
+**Standard client folder structure (all 6 folders):**
+```
+clients/[Client Name]/
+├── 01-received/
+├── 02-Strategy/
+├── 03-Deliverables/
+├── 04-working/
+├── 05-Context MD/
+└── ai-automations/
+```
 
 **Never** save session context to `04-working/` — that folder is for deliverables in progress.
 **Never** save it to the session sandbox (`/outputs/`).
 The `05-Context MD/` folder is the only valid home for session summaries.
+The `ai-automations/` folder holds built automation assets (n8n JSON, MCP packs, meta-automation configs) — it is NOT a WIP folder.
 
 ---
 
