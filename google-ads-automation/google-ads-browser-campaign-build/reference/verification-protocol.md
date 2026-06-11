@@ -11,6 +11,30 @@ Two failure modes drove this protocol into existence:
 
 The protocol below catches both.
 
+## Preferred read-back surface — Assets details page
+
+For Steps 6 and 7 below (reading back saved headlines and descriptions), the **Assets details page** is the cleanest surface and should be used as the default. It is more reliable than the headline modal for verification because it displays every saved value as a separate row with per-asset performance data, and it is cleanly extractable via `get_page_text`.
+
+**URL pattern:**
+
+```
+https://ads.google.com/aw/unifiedassetreport/rsaassetdetails?ocid=<ocid>&entityId=<adId>&adGroupIdForEntity=<adGroupId>&isPMax=false&adId=<adId>&authuser=0&__e=<customerId>
+```
+
+**How to reach it:** Ads list view → find the row for the ad → click **"View assets details"** (link below the ad's preview, alongside "Preview ads"). This populates the URL automatically with all the right IDs.
+
+**What it shows:** Every headline, description, sitelink, callout, and business asset attached to the ad. Each row has: asset text, level (Ad / Campaign), status, asset type, position pinning, last updated, impressions, clicks, cost, conversions.
+
+**Two caveats to know before relying on it:**
+
+1. **Asset row order does NOT preserve spec position.** Unless headlines are explicitly position-pinned (the "Position pinning" column shows "None" by default for every asset), Google does not store them in H1-H15 order. The asset view shows them in some internal ordering (likely creation-date or ID-based). When reading back against a spec that uses H1-H15 numbering, do not assume "first row in asset view = H1 in spec." **Match by exact text, not by position.**
+
+2. **Default pagination is 10 rows.** A full RSA has 15 headlines + 4 descriptions = 19 rows minimum (plus any campaign-level assets like business logos, sitelinks, callouts). Click the "Next page" arrow or change the rows-per-page dropdown to 50 before extracting — otherwise you'll only see 10 of 19+.
+
+The modal flow described under Step 6 below remains the right pattern for *editing* headlines (it bypasses the Angular silent-failure problem documented in `angular-interaction-patterns.md`). For *reading back what's saved*, prefer the asset view.
+
+---
+
 ## The mandatory sequence
 
 Run this end-to-end for every RSA. No partial completion.
@@ -53,19 +77,22 @@ If it shows Poor or Average:
 
 ### Step 6 — Read back every headline
 
-Open the editor on the saved ad. Open the "Choose up to 15 headlines" modal. Read every chip's text. Compare against the spec line by line.
+**Preferred path:** Open the Assets details page for this ad (see "Preferred read-back surface" section above). Change rows-per-page to 50 so all 19+ assets are visible. Sort or filter by Asset type = Headline. Read every row's asset text. Compare against the spec by **exact text match (NOT by position — assets are not ordered by spec H number).**
 
-For each headline:
-- Spec text matches chip text exactly → ✅
-- Any difference (extra space, wrong word, truncation) → ❌
+**Fallback path (use only if the asset view is unavailable):** Open the editor on the saved ad. Open the "Choose up to 15 headlines" modal. Read every chip's text. Compare against the spec line by line.
 
-Any ❌ = re-edit using Pattern A, save, re-run this protocol from Step 1.
+For each headline (either path):
+- Spec text appears as an asset row / chip → ✅
+- Spec text does not appear → ❌ (something didn't save, or was overwritten)
+- An extra asset present that is NOT in the spec → ❌ (drift — a prior session left a stale value)
+
+Any ❌ = re-edit using `angular-interaction-patterns.md` Pattern A, save, re-run this protocol from Step 1.
 
 This step has caught silent Angular failures that would otherwise have shipped to the live ad. Do not skip it because the editor showed the right text earlier — the editor view can show one value while the saved value differs.
 
 ### Step 7 — Read back all 4 descriptions
 
-Same protocol as Step 6, for the descriptions.
+Same protocol as Step 6. Use the Assets details page filtered/sorted by `Asset type = Description`. Exact text match against the spec.
 
 ### Step 8 — Update the spec
 
