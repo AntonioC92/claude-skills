@@ -1,5 +1,5 @@
 ---
-name: workflows-architecture-build-protocol
+name: sw-workflows-architecture-build-protocol
 description: Rules and architecture patterns for building n8n workflows in the AI Marketing Intelligence Engine. Use this skill whenever building, extending, or modifying any n8n automation workflow — including new platform modules (Google Ads, LinkedIn), optimization engines, alert systems, or multi-client routers. Always consult this skill before writing any n8n node configuration, workflow JSON, or Code node logic.
 ---
 

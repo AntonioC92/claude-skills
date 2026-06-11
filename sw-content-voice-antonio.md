@@ -1,5 +1,5 @@
 ---
-name: content-antonio
+name: sw-content-voice-antonio
 description: "Apply Antonio Caruso's (caruso.martech) personal writing voice, business context, case studies, and content strategy for proposals, LinkedIn content, templates, website copy, and any first-person professional writing. Triggers on: write like me, my voice, proposal, cover letter, case study, LinkedIn, content, sound human, template, website copy."
 ---
 

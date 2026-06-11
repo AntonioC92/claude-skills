@@ -1,6 +1,13 @@
 ---
-name:workflows-optimisation-analysis-prompt-templateai-analysis-prompt-template
-description: Defines the standard AI prompt structure, report sections, and Build Report node logic used across all platform modules. Use this skill whenever building or modifying the Build AI Prompt node, Claude AI Analysis node, or Build Report node for any platform workflow.
+name: sw-workflows-optimisation-analysis-prompt-template
+description: >
+  Defines the standard AI prompt structure, report sections, and Build Report
+  node logic used across all platform modules in the AI Marketing Intelligence
+  Engine. Use this skill whenever building or modifying the Build AI Prompt
+  node, Claude AI Analysis node, or Build Report node for any platform
+  workflow (Meta Ads, Google Ads, LinkedIn Ads). Triggers on: build AI prompt
+  node, build report node, analysis node, AI prompt template, weekly ad report,
+  performance report generator, campaign analysis report, report sections.
 ---
 
 # SKILL: AI Analysis Prompt & Report Template

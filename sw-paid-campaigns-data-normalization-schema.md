@@ -1,5 +1,5 @@
 ---
-name: paid-campaigns-data-normalization-schema
+name: sw-paid-campaigns-data-normalization-schema
 description: Defines the shared campaign data schema, computed KPI formulas, and performance flag logic used across all platform modules. Use this skill whenever building or modifying a Transform node for any ad platform (Meta, Google Ads, LinkedIn).
 ---
 

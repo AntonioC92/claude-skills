@@ -1,5 +1,5 @@
 ---
-name: SEO-gsc-ga4-normalization-schema
+name: sw-seo-gsc-ga4-normalization-schema
 description: Defines the organic search data schema, computed SEO KPI formulas, and opportunity flag logic for GSC and GA4 data in the AI Marketing Intelligence Engine. Use this skill whenever building or modifying a Transform node for Google Search Console or Google Analytics 4 data, or when ensuring normalized organic data output is compatible with the AI analysis layer. Always apply this schema before writing any GSC or GA4 transformation code.
 ---
 

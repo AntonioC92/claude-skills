@@ -1,23 +1,23 @@
 ---
-name: professional-html-document
+name: sw-reporting-professional-html-document
 description: >
-  Generates professionally designed, single-file HTML documents in a refined navy, gold and beige visual style.
-  Use this skill whenever the user asks to create any structured professional document as an HTML file, including:
-  action plans, operational plans, project plans, proposals, engagement proposals, client reports, status reports,
-  responsibility splits, weekly task breakdowns, onboarding documents, or any formal documented deliverable.
-  Triggers on phrases like "create an action plan", "build a proposal", "write a report", "project plan HTML",
-  "client document", "operational plan", "responsibility split", "engagement document", "status report",
-  "documented plan", or "make a professional HTML document". Always use this skill when the output should be
-  a polished, styled HTML file suitable for sharing with a client or colleague. The skill produces a single
+  Generates professionally designed, single-file HTML documents. Colours and fonts are always requested
+  from the user before building — no defaults are applied. Use this skill whenever the user asks to create
+  any structured professional document as an HTML file, including: action plans, operational plans, project
+  plans, proposals, engagement proposals, client reports, status reports, responsibility splits, weekly task
+  breakdowns, onboarding documents, or any formal documented deliverable. Triggers on phrases like
+  "create an action plan", "build a proposal", "write a report", "project plan HTML", "client document",
+  "operational plan", "responsibility split", "engagement document", "status report", "documented plan",
+  or "make a professional HTML document". Always use this skill when the output should be a polished,
+  styled HTML file suitable for sharing with a client or colleague. The skill produces a single
   self-contained HTML file ready to push to GitHub Pages or share directly.
 ---
 
 # Professional HTML Document Skill
 
 Produces a single-file, self-contained HTML document for professional use. Covers action plans, proposals,
-reports, and any structured client-facing deliverable. The design system uses Playfair Display headings,
-DM Sans body text, and DM Mono for labels. Colours are fully customisable via CSS variables but default
-to the navy, gold and beige palette established in the Chef's Office project.
+reports, and any structured client-facing deliverable. Colours and fonts are always collected from the user
+before building. No palette or typeface is assumed.
 
 ## Document types this skill covers
 
@@ -34,50 +34,62 @@ to the navy, gold and beige palette established in the Chef's Office project.
 
 ## Step 1: Identify document type and gather inputs
 
-Ask the user (or extract from context) before generating:
+**Before generating anything**, ask the user for the following. Do not proceed until colours and fonts are confirmed.
 
-| Input | Description |
-|---|---|
-| Document type | Action plan / proposal / report / other |
-| Project / client name | Used in header and footer |
-| Owners or parties | Names of people, teams, or companies involved |
-| Owner roles | Short label per person (e.g. "Strategy & Creative") |
-| Brand colours | Override defaults if client has a specific palette |
-| Time period | e.g. 2-week plan, 90-day roadmap, Q1 report |
-| Section content | Goals, tasks, phases, findings — whatever fits the type |
-| Confidentiality level | Shown in header/footer |
+| Input | Required | Description |
+|---|---|---|
+| Document type | Yes | Action plan / proposal / report / other |
+| Project / client name | Yes | Used in header and footer |
+| Primary colour | Yes | Main brand colour (hex code or name) |
+| Accent colour | Yes | Secondary/highlight colour (hex code or name) |
+| Background colour | Yes | Page background (hex code or name) |
+| Heading font | Yes | Google Font name for headings (e.g. Playfair Display, Inter, Montserrat) |
+| Body font | Yes | Google Font name for body text (e.g. DM Sans, Lato, Open Sans) |
+| Owners or parties | If applicable | Names of people, teams, or companies involved |
+| Owner roles | If applicable | Short label per person (e.g. "Strategy & Creative") |
+| Time period | If applicable | e.g. 2-week plan, 90-day roadmap, Q1 report |
+| Section content | Yes | Goals, tasks, phases, findings — whatever fits the type |
+| Confidentiality level | Optional | Shown in header/footer |
 
-If the user provides a brief, contract, or existing document, extract all inputs from it directly.
+If the user provides a brand guide or brief, extract colours and fonts from it directly and confirm with the user before proceeding.
+
+**Never use a previous client's colours or fonts as a default.**
 
 ---
 
-## Step 2: Design system defaults
+## Step 2: Design system — built from user inputs
+
+Populate the CSS variables using the colours and fonts provided by the user in Step 1.
 
 ```css
 :root {
-  --primary:    #1F2A44;   /* deep navy */
-  --accent:     #C7A86D;   /* muted gold */
-  --neutral:    #E6D9C3;   /* warm beige */
+  --primary:    [user primary colour];
+  --accent:     [user accent colour];
+  --bg:         [user background colour];
+
+  /* Derived — adjust lightness to complement the palette above */
   --charcoal:   #333333;
   --muted:      #6b7280;
   --white:      #ffffff;
-  --bg:         #f0ece4;
 
-  /* Two-party colour coding — adjust per project */
-  --owner1-bg:   #daeaf6;
-  --owner1-text: #1F4E79;
-  --owner2-bg:   #fdf0d5;
-  --owner2-text: #7B4F00;
+  /* Two-party colour coding — derive from primary/accent or ask user */
+  --owner1-bg:   [light tint of primary];
+  --owner1-text: [dark shade of primary];
+  --owner2-bg:   [light tint of accent];
+  --owner2-text: [dark shade of accent];
   --both-bg:     #e8f5e9;
   --both-text:   #2E7D32;
   --danger:      #8b3333;
 }
 ```
 
-**Fonts — always load from Google Fonts:**
+**Fonts — load from Google Fonts using the user-provided font names:**
 ```html
-<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700;900&family=DM+Sans:wght@300;400;500;600&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=[HeadingFont]:wght@400;700;900&family=[BodyFont]:wght@300;400;500;600&display=swap" rel="stylesheet">
 ```
+
+Use `[HeadingFont]` for all `h1`–`h3` elements and `[BodyFont]` for body, paragraphs, and tables.
+Do not load DM Mono or any other font unless the user requests it.
 
 ---
 

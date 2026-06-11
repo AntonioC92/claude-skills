@@ -1,5 +1,5 @@
 ---
-name: SEO-ai-visibility-tracking
+name: sw-seo-ai-visibility-tracking
 description: Defines how to ingest AI Overview citation data from DataForSEO or Bing Webmaster Tools, normalize it against the existing campaign schema, and add an AI Visibility section to any performance report. Use this skill whenever building or modifying an AI visibility tracking module, or when adding AI search presence data to an existing Meta Ads or SEO report. Always apply this schema before writing any AI visibility ingestion or normalization code.
 ---
 
